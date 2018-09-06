@@ -1,0 +1,6 @@
+FROM bridg/java8
+
+ADD spring-boot-docker-blank.jar /opt/spring-boot-docker-demo/
+EXPOSE 8080
+WORKDIR /opt/spring-boot-docker-demo/
+CMD ["java", "-Xms512m", "-Xmx1g", "-jar", "spring-boot-docker-blank.jar"]

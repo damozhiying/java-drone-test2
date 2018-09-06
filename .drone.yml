@@ -1,0 +1,19 @@
+pipeline:
+  test:
+    image: maven:alpine
+    commands:
+      - mvn --quiet --batch-mode test
+
+  build_jar:
+    image: maven:alpine
+    commands:
+    - mvn --batch-mode clean package
+   
+  publish:
+    image: plugins/docker
+    repo: damozhiying/spring-boot-docker-blank-drone
+    username: damozhiying
+    password: damozhiying
+    tags:
+      - latest
+      - ${DRONE_COMMIT_SHA:0:8} 
